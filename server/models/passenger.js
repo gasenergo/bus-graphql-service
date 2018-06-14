@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const passengerSchema = new Schema({
     name: String,
-    phone: Number,
+    phone: String,
     seatNum: Number,
     busId: String
 });
