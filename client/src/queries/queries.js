@@ -15,9 +15,6 @@ const getBusQuery = gql`
     query GetBus($id: ID){
         bus(id: $id) {
             id
-            route
-            date
-            time
             vehicle
             passengers {
                 id
@@ -38,5 +35,16 @@ const addPassengerMutation = gql`
     }
 `;
 
+const addBusMutation = gql`
+    mutation AddBus($date: String!, $time: String!, $route: String!, $vehicle: String!, $description: String!){
+        addBus(date: $date, time: $time, route: $route, vehicle: $vehicle, description: $description){
+            id
+            route
+            date
+            time
+            description
+        }
+    }
+`;
 
-export { getBusQuery, getBusesQuery, addPassengerMutation };
+export { getBusQuery, getBusesQuery, addPassengerMutation, addBusMutation };

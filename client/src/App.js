@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-do
 // components
 import { Header, Container, Segment} from 'semantic-ui-react'
 import BusList from './components/BusList';
-import BusDetails from './components/BusDetails';
-import AddPassenger from './components/AddPassenger';
+import Bus from './components/Bus';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import AddBus from './components/AddBus';
 
 
 // apollo client setup
@@ -31,7 +31,7 @@ class App extends Component {
     }
     handleDayClick(day) {
         this.setState({ date: day });
-      }
+    }
     handleBusClick(bus) {
         this.setState({ selectedBus: bus });
     }
@@ -59,12 +59,8 @@ class App extends Component {
                                 <BusList date={this.state.date.toLocaleDateString("en-GB")} onBusClick={this.handleBusClick}/>
                             </div>
                         } />
-                        <Route path="/bus" render={(props)=>
-                        <div>
-                            <BusDetails busId={this.state.selectedBus} onSeatClick={this.handleSeatClick} />
-                            <AddPassenger busId={this.state.selectedBus} seatNum={this.state.selectedSeat} />
-                        </div>
-                        } />
+                        <Route path="/bus" render = {(props) =><Bus busId={this.state.selectedBus} onSeatClick={this.handleSeatClick} seatNum={this.state.selectedSeat}/>} />
+                        <Route path="/addbus" component={AddBus} />
                         <Redirect to="/" />
                     </Switch>  
                 </Container>

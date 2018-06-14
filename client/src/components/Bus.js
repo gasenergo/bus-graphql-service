@@ -1,13 +1,33 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
+import { addPassengerMutation, getBusQuery } from '../queries/queries';
+import { Button, Form, Segment  } from 'semantic-ui-react'
 import sortBy from 'lodash/sortBy';
 import uniqBy from 'lodash/uniqBy';
-import { getBusQuery } from '../queries/queries';
 
-// components
-import { Button, Segment } from 'semantic-ui-react'
 
-class BusDetails extends Component {
+class Bus extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            name: '',
+            phone: '',
+        };
+    }
+    
+    submitForm(e){
+        e.preventDefault();
+        this.props.addPassengerMutation({
+            variables: {
+                name: this.state.name,
+                phone: this.state.phone,
+                seatNum: this.props.seatNum,
+                busId: this.props.busId,
+            },
+            refetchQueries: [{ query: getBusQuery,variables: ({id: this.props.busId}) }]
+        });
+    }
+
     displayBusDetails(){
         const data = this.props.data;
         if(data.loading){
@@ -43,19 +63,27 @@ class BusDetails extends Component {
             let passengers = sortBy(uniqBy([...data.bus.passengers,...dummyPassengers],'seatNum'), p => p.seatNum)
             return(
                 <div>
-                    <h2>{ data.bus.route }</h2>
-                    <p>{ data.bus.date }</p>
-                    <p>{ data.bus.time }</p>
-                    <p>All passengers:</p>
                     <Segment className={data.bus.vehicle} >
                         { passengers.map(passenger => {
-                            return <Button key={passenger.id} onClick={()=>this.props.onSeatClick(passenger.seatNum)} disabled = {passenger.name !== null}>{ passenger.seatNum }{passenger.name}</Button>
+                            return <Button key={passenger.id} onClick={()=>this.props.onSeatClick(passenger.seatNum)} disabled = {passenger.name !== null}>{ passenger.seatNum }</Button>
                         })}
                     </Segment>
+                    <Form onSubmit={ this.submitForm.bind(this) }>
+                        <Form.Field>
+                            <label>Name</label>
+                            <input placeholder='Name' type="text" onChange={ (e) => this.setState({ name: e.target.value }) } />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Phone</label>
+                            <input placeholder='Phone' type="number" onChange={ (e) => this.setState({ phone: e.target.value }) } />
+                        </Form.Field>
+                        <Button type='submit'>Submit</Button>
+                    </Form>
                 </div>
             );
         }
     }
+
     render(){
         return(
             <div>
@@ -65,12 +93,24 @@ class BusDetails extends Component {
     }
 }
 
-export default graphql(getBusQuery, {
-    options: (props) => {
-        return {
-            variables: {
-                id: props.busId
+export default compose(
+    graphql(getBusQuery, {
+        options: (props) => {
+            return {
+                variables: {
+                    id: props.busId
+                }
             }
         }
-    }
-})(BusDetails);
+    }),
+    graphql(addPassengerMutation, { name: "addPassengerMutation" })
+)(Bus);
+
+
+
+
+
+
+
+
+
