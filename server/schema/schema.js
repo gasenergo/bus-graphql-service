@@ -89,7 +89,7 @@ const Mutation = new GraphQLObjectType({
             type: PassengerType,
             args: {
                 name: { type: GraphQLString },
-                phone: { type: GraphQString },
+                phone: { type: GraphQLString },
                 seatNum: {type: GraphQLInt },
                 busId: { type: GraphQLID }
             },

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Switch, Link} from 'react-router-dom'
 
 // components
 import { Header, Container, Segment} from 'semantic-ui-react'
@@ -57,6 +57,7 @@ class App extends Component {
                                     </div>
                                 </Segment>
                                 <BusList date={this.state.date.toLocaleDateString("en-GB")} onBusClick={this.handleBusClick}/>
+                                <Link to="/addbus">+</Link>
                             </div>
                         } />
                         <Route path="/bus" render = {(props) =><Bus busId={this.state.selectedBus} onSeatClick={this.handleSeatClick} seatNum={this.state.selectedSeat}/>} />
