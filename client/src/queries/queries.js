@@ -27,7 +27,7 @@ const getBusQuery = gql`
 `;
 
 const addPassengerMutation = gql`
-    mutation AddPassenger($name: String!, $phone: Int!, $seatNum: Int!, $busId: ID!){
+    mutation AddPassenger($name: String!, $phone: String!, $seatNum: Int!, $busId: ID!){
         addPassenger(name: $name, phone: $phone, seatNum: $seatNum, busId: $busId){
             name
             id

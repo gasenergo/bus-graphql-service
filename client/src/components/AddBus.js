@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
-import { addBusMutation } from '../queries/queries';
+import { addBusMutation,  getBusesQuery } from '../queries/queries';
 import { Form, Segment, Header } from 'semantic-ui-react'
 import DayPicker from 'react-day-picker';
 
@@ -32,7 +32,8 @@ class AddBus extends Component {
                 route: this.state.route,
                 vehicle: this.state.vehicle,
                 description: this.state.description
-            }
+            },
+            refetchQueries: [{ query: getBusesQuery,variables: ({date: this.state.date.toLocaleDateString("en-GB")}) }]
         });
 
     }
@@ -68,3 +69,5 @@ class AddBus extends Component {
 export default compose(
     graphql(addBusMutation, { name: "addBusMutation" })
 )(AddBus);
+
+

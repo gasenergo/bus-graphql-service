@@ -57,7 +57,7 @@ class App extends Component {
                                     </div>
                                 </Segment>
                                 <BusList date={this.state.date.toLocaleDateString("en-GB")} onBusClick={this.handleBusClick}/>
-                                <Link to="/addbus">+</Link>
+                                <Link className='addBusLink' to="/addbus">+</Link>
                             </div>
                         } />
                         <Route path="/bus" render = {(props) =><Bus busId={this.state.selectedBus} onSeatClick={this.handleSeatClick} seatNum={this.state.selectedSeat}/>} />

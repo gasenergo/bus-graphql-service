@@ -80,7 +80,7 @@ class Bus extends Component {
             return(
                 <div>
                     <Segment className={data.bus.vehicle} >
-                        <Image src={vehiclePict} />
+                        <Image src={vehiclePict} fluid/>
                         { passengers.map(passenger => {
                             return <Button 
                             key={passenger.id} 

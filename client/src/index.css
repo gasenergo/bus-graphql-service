@@ -6,7 +6,6 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 5em !important;
-    
 }
 .date{
     text-align: center;
@@ -23,4 +22,116 @@ a.divLink {
     background-color: white;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+.iveco{
+    margin-top: 5em !important;
+    height: 25rem;
+} 
+.iveco>*:not(img){
+    position: absolute;
+    width: 8%;
+    height: 13%;
+    box-sizing: border-box;
+    border: 1px solid black !important;
+}
+.iveco>.seatNum1{
+    top: 20%;
+    left: 51%;
+}
+.iveco>.seatNum2{
+    top: 35%;
+    left: 51%;
+}
+.iveco>.seatNum3{
+    top: 20%;
+    left: 41%;
+}
+.iveco>.seatNum4{
+    top: 35%;
+    left: 41%;
+}
+.iveco>.seatNum5{
+    top: 57%;
+    left: 41%;
+}
+.iveco>.seatNum6{
+    top: 20%;
+    left: 31%;
+}
+.iveco>.seatNum7{
+    top: 35%;
+    left: 31%;
+}
+.iveco>.seatNum8{
+    top: 57%;
+    left: 31%;
+}
+.iveco>.seatNum9{
+    top: 20%;
+    left: 21%;
+}
+.iveco>.seatNum10{
+    top: 35%;
+    left: 21%;
+}
+.iveco>.seatNum11{
+    top: 57%;
+    left: 21%;
+}
+.iveco>.seatNum12{
+    top: 19%;
+    left: 11%;
+}
+.iveco>.seatNum13{
+    top: 32%;
+    left: 11%;
+}
+.iveco>.seatNum14{
+    top: 45%;
+    left: 11%;
+}
+.iveco>.seatNum15{
+    top: 58%;
+    left: 11%;
+}
+
+.car{
+    margin-top: 5em !important;
+    height: 25rem;
+} 
+.car>*:not(img){
+    position: absolute;
+    width: 15%;
+    height: 20%;
+    box-sizing: border-box;
+    border: 1px solid black !important;
+}
+.car>.seatNum1{
+    top: 52%;
+    left: 45%;
+}
+.car>.seatNum2{
+    top: 17%;
+    left: 26%;
+}
+.car>.seatNum3{
+    top: 37%;
+    left: 26%;
+}
+.car>.seatNum4{
+    top: 57%;
+    left: 26%;
+}
+.addBusLink{
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 5rem;
+    font-size: 52px;
+    color: white;
+    text-decoration: none;
+    margin: 3% 0;
 }
