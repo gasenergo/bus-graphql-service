@@ -9,7 +9,7 @@ const app = express();
 // allow cross-origin requests
 app.use(cors());
 
-// connect to localhost mongodb database
+// connect to localhost mongodb database, uncomment if you want to use local database
 
 // mongoose.connect('mongodb://localhost/bus-gql')
 // mongoose.connection.once('open', () => {
@@ -17,7 +17,7 @@ app.use(cors());
 // });
 
 
-// connect to atlas mongodb database
+// connect to atlas mongodb database, please don't forget to change my URI to yours
 mongoose.connect('mongodb://Admin:nkDDHHRe1yvulaSw@bus-shard-00-00-swsqn.mongodb.net:27017,bus-shard-00-01-swsqn.mongodb.net:27017,bus-shard-00-02-swsqn.mongodb.net:27017/bus-gql?ssl=true&replicaSet=Bus-shard-0&authSource=admin&retryWrites=true')
 
 mongoose.connection.once('open', () => {
@@ -30,6 +30,9 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
-app.listen(4000, () => {
+// process.env.PORT lets the port be set by Heroku
+var port = process.env.PORT || 4000;
+
+app.listen(port, () => {
     console.log('now listening for requests on port 4000');
 });
